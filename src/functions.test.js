@@ -20,12 +20,33 @@
  *
  * i.e. findLongestWord("book dogs") should return "book"
  */
+
+const findLongestWord = words => {
+  let wordsarray = words.split(' ')
+  let longestword = wordsarray.reduce(function(long, current) {
+    if (current.length > long.length) {
+      return current
+    } else {
+      return long
+    }
+  }, '')
+  return longestword
+}
+
 // ...
 
 /*
  * 2) Define a function sumOfArray that calculates the sum of
  * all the numbers in an array.
  */
+
+const sumOfArray = numbers => {
+  let sum = numbers.reduce(function(first, second) {
+    return first + second
+  }, 0)
+
+  return sum
+}
 
 /**
  *
@@ -34,6 +55,18 @@
       Your function should return true if the array contains the value, false if not.
  */
 
+const doesContain = (array, value) => {
+  let result = array.filter(current => {
+    if (current === value) {
+      return true
+    }
+  }, 0)
+  if (result.length > 0) {
+    return true
+  } else {
+    return false
+  }
+}
 /**
  * 4) defined a function called maps. This takes 1 argument, an array or numbers. 
  * Your function should return a new array with each value doubled.
@@ -42,8 +75,15 @@
     [1, 2, 3] --> [2, 4, 6]
 
    Try to use the map method - it comes in very handy quite a lot so is a good one to know.
- *    
+ *  
+ 
  */
+
+const maps = numbers => {
+  return numbers.map(number => {
+    return number * 2
+  }, 0)
+}
 
 /**
  * 5) Write a function called noSpace. This function takes one argument, a string. 
@@ -56,6 +96,10 @@
  * NOTE: Don't modify anything below this line...
  */
 
+const noSpace = words => {
+  return words.replace(/\s/g, '')
+}
+
 /* eslint-disable no-undef */
 
 import test from 'ava'
@@ -64,8 +108,7 @@ const ensureDefined = (t, method) => {
   if (eval(`typeof ${method}`) !== 'function') {
     t.fail(
       `\n\n\n\n\n⚡️⚡️⚡️⚡️⚡️ The next step is to define the function ${method} ⚡️⚡️⚡️⚡️⚡️\n\n\n`
-    )
-  }
+
 }
 test('findLongestWord()', t => {
   ensureDefined(t, 'findLongestWord')
